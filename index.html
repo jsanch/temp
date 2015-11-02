@@ -49,6 +49,19 @@ line.median {
     stroke-width: 1;
 }
 
+#place1{
+text-align: center;
+}
+#place1 h2,#place1 h3{
+  text-align: left;
+}
+
+#progresscharts{
+text-align: center;
+/*width: 50%;*/
+padding-left: 25%;
+padding-right: 25%;
+}
 
 </style>
 <!-- <link rel="stylesheet" href="https://highlightjs.org/static/styles.css"> -->
@@ -56,49 +69,51 @@ line.median {
 <script type="text/javascript" src="http://ajax.googleapis.com/ajax/libs/jquery/1.6.2/jquery.min.js"></script>
 <script type="text/javascript" src="//cdnjs.cloudflare.com/ajax/libs/lodash.js/0.10.0/lodash.min.js"></script>
 <body>
-<h1> Demographics </h1>
-<br>
-<div id="demographics"></div>
-<h1> Acess To Finance </h1>
-<br>
+<div id="place1">
+  <h1> Demographics </h1>
+  <br>
+  <div id="demographics"></div>
+    <h1> Acess To Finance </h1>
+    <br>
+    <div id="progresscharts">
+      <h2> Access Strand </h2>
+      <hr>
+      <h3> Banked % </h3>
+      <div id="chart" class="progress"></div>
+      <h3> Other Formal  (Non - Bank) </h3>
+      <div id="chart2" class="progress"></div>
+      <h3> Informal Only </h3>
+      <div id="chart3" class="progress"></div>
+      <h3> Excluded  </h3>
+      <div id="chart4" class="progress"></div>
 
-<h2> Access Strand </h2>
-<hr>
-<h3> Banked % </h3>
-<div id="chart" class="progress"></div>
-<h3> Other Formal  (Non - Bank) </h3>
-<div id="chart2" class="progress"></div>
-<h3> Informal Only </h3>
-<div id="chart3" class="progress"></div>
-<h3> Excluded  </h3>
-<div id="chart4" class="progress"></div>
+      <h2> Insurance Product Usage </h2>
+      <hr>
+      <h3> Formal  </h3>
+      <div id="chart5" class="progress"></div>
+      <h3> Informal </h3>
+      <div id="chart6" class="progress"></div>
+      <h3> No Insurance </h3>
+      <div id="chart7" class="progress"></div>
 
-<h2> Insurance Product Usage </h2>
-<hr>
-<h3> Formal  </h3>
-<div id="chart5" class="progress"></div>
-<h3> Informal </h3>
-<div id="chart6" class="progress"></div>
-<h3> No Insurance </h3>
-<div id="chart7" class="progress"></div>
-
-<!-- <h3> Other Formal  (Non - Bank) </h3>
-<div id="chart7"></div>
-<h3> Other Formal  (Non - Bank) </h3>
-<div id="chart8"></div>
-<h3> Other Formal  (Non - Bank) </h3>
-<div id="chart9"></div>
-<h3> Other Formal  (Non - Bank) </h3>
-<div id="chart10"></div> -->
-
+      <!-- <h3> Other Formal  (Non - Bank) </h3>
+      <div id="chart7"></div>
+      <h3> Other Formal  (Non - Bank) </h3>
+      <div id="chart8"></div>
+      <h3> Other Formal  (Non - Bank) </h3>
+      <div id="chart9"></div>
+      <h3> Other Formal  (Non - Bank) </h3>
+      <div id="chart10"></div> -->
+   </div>
+<div>
 </body>
 <script src="//d3js.org/d3.v3.min.js"></script>
 <script>
 function drawgroup1 () {
 
   var margin = {top: 20, right: 20, bottom: 30, left: 40},
-      width = 600 - margin.left - margin.right,
-      height = 300 - margin.top - margin.bottom;
+      width = 900 - margin.left - margin.right,
+      height = 450 - margin.top - margin.bottom;
 
   var x0 = d3.scale.ordinal()
       .rangeRoundBands([0, width], .1);
@@ -109,7 +124,7 @@ function drawgroup1 () {
       .range([height, 0]);
 
   var color = d3.scale.ordinal()
-      .range(["#98abc5", "#8a89a6", "#7b6888", "#6b486b", "#a05d56", "#d0743c", "#ff8c00"]);
+      .range(["#98abc5", "#7b6888", "#a05d56", "#d0743c", "#ff8c00"]);
 
   var xAxis = d3.svg.axis()
       .scale(x0)
@@ -193,7 +208,7 @@ function drawgroup1 () {
 // Chart 1
 function drawchart1(_id, _url) {
   var url = _url
-    , margin = {top: 30, right: 10, bottom: 30, left: 10}
+    , margin = {top: 30, right: 100, bottom: 30, left: 100}
     , width = parseInt(d3.select(_id).style('width'), 10)
     , width = width - margin.left - margin.right
     , height = 200 // placeholder
@@ -326,14 +341,13 @@ function drawchart1(_id, _url) {
 
 // Main
 drawgroup1();
-drawchart1('#chart','banked.csv');
-drawchart1('#chart2','formalother.csv');
-drawchart1('#chart3','informalonly.csv');
-drawchart1('#chart4','excluded.csv');
-
-drawchart1('#chart5','insuranceformal.csv');
-drawchart1('#chart6','insuranceinformal.csv');
-drawchart1('#chart7','insuranceno.csv');
+drawchart1('#chart','https://raw.githubusercontent.com/jsanch/temp/master/banked.csv');
+drawchart1('#chart2','https://raw.githubusercontent.com/jsanch/temp/master/formalother.csv');
+drawchart1('#chart3','https://raw.githubusercontent.com/jsanch/temp/master/informalonly.csv');
+drawchart1('#chart4','https://raw.githubusercontent.com/jsanch/temp/master/excluded.csv');
+drawchart1('#chart5','https://raw.githubusercontent.com/jsanch/temp/master/insuranceformal.csv');
+drawchart1('#chart6','https://raw.githubusercontent.com/jsanch/temp/master/insuranceinformal.csv');
+drawchart1('#chart7','https://raw.githubusercontent.com/jsanch/temp/master/insuranceno.csv');
 
 
 </script>
